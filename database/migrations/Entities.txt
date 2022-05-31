@@ -1,0 +1,19 @@
+Entities
+
+user
+password_resets
+failed_jobs
+personal_access_tokens
+
+contact(contact_id, user_id, fullname, shortname, phonenumber, emailaddress, meet_at, gender, contactaddress, created_at)
+
+php artisan make:migration create_contacts_table
+php artisan make:model Contact
+
+php artisan make:model Contact -m
+
+
+Ways to insert into data base
+
+Raw SQL
+Query
