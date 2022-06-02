@@ -64,12 +64,12 @@ class ContactController extends Controller
         Contact::insertContact($request);
 
         //redirecting using URI
-        return redirect('contacts');
+        //return redirect('contacts');
 
         //set flash session
-        /*$request->session()->flash("success", "A new contact was successfully added");
+        $request->session()->flash("success", "A new contact was successfully added");
 
-       return redirect('contacts');*/
+        return redirect('contacts');
     }
 
     /**
@@ -92,7 +92,7 @@ class ContactController extends Controller
     {
         //fetch the specific contact
         $details = Contact::getContacts($id);
-        //dd($details);
+        // dd($details);
         $title = "Edit Contact";
         return view('myadmin.editcontact', compact('title', 'details', 'id'));
     }
@@ -119,6 +119,8 @@ class ContactController extends Controller
 
         //update record
         Contact::updateContact($request);
+
+        $request->session()->flash("success", "Contact was successfully updated");
         return redirect('contacts');
     }
 
@@ -128,12 +130,13 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         //dd($id);
         //
         Contact::deleteContact($id);
 
+        $request->session()->flash("success", "Contact was successfully deleted");
         return redirect('contacts');
     }
 }

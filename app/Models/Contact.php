@@ -13,44 +13,46 @@ class Contact extends Model
     protected $primaryKey = 'contact_id';
 
     //function to inser contacts
-    public static function insertContact($request){
+    public static function insertContact($request)
+    {
 
-    	$userid = Auth::user()->user_id;
+        $userid = Auth::user()->user_id;
 
-    	//raw query to insert
-    	$result = DB::insert('INSERT INTO contacts(user_id, fullname, shortname, biography, gender, phonenumber, workphone, emailaddress, contactaddress, meet_at) VALUES(?,?,?,?,?,?,?,?,?,?)', [$userid, $request->fullname, $request->shortname, $request->biography, $request->gender, $request->phonenumber, $request->workphone, $request->emailaddress, $request->contactaddress, $request->meet_at]);
+        //raw query to insert
+        $result = DB::insert('INSERT INTO contacts(user_id, fullname, shortname, biography, gender, phonenumber, workphone, emailaddress, contactaddress, meet_at) VALUES(?,?,?,?,?,?,?,?,?,?)', [$userid, $request->fullname, $request->shortname, $request->biography, $request->gender, $request->phonenumber, $request->workphone, $request->emailaddress, $request->contactaddress, $request->meet_at]);
 
-    	return $result;
+        return $result;
     }
 
-    public static function getContact(){
-    	//raw query
-    	$result = DB::select('SELECT * FROM contacts');
+    public static function getContact()
+    {
+        //raw query
+        $result = DB::select('SELECT * FROM contacts');
 
         //query builder
         $result2 = DB::table('contacts')->get();
 
-    	return $result;
+        return $result;
     }
 
-    public static function getContacts($id){
+    public static function getContacts($id)
+    {
         //raw query
         $result = DB::select('SELECT * FROM contacts WHERE contact_id=?', [$id]);
 
         //query builder
-        $result2 = DB::table('contacts')->where('contact_id', $id)->first();//first will fetch only one row;
+        $result2 = DB::table('contacts')->where('contact_id', $id)->first(); //first will fetch only one row;
 
         //eloquence ORM
         $result3 = Contact::find($id);
 
         return $result3;
-
-
     }
 
-    public static function updateContact($request){
+    public static function updateContact($request)
+    {
         //raw query
-       /* $result = DB::update("UPDATE contacts SET fullname=?, shortname=?, biography=?, gender=?, phonenumber=?, workphone=?, emailaddress=?, contactaddress=?, meet_at=? WHERE contact_id=?", [$request->fullname, $request->shortname, $request->biography, $request->gender, $request->phonenumber, $request->workphone, $request->emailaddress, $request->contactaddress, $request->meet_at, $request->contactid] );*/
+        /* $result = DB::update("UPDATE contacts SET fullname=?, shortname=?, biography=?, gender=?, phonenumber=?, workphone=?, emailaddress=?, contactaddress=?, meet_at=? WHERE contact_id=?", [$request->fullname, $request->shortname, $request->biography, $request->gender, $request->phonenumber, $request->workphone, $request->emailaddress, $request->contactaddress, $request->meet_at, $request->contactid] );*/
 
         //eloquence
         $mycontact = Contact::find($request->contactid);
@@ -70,9 +72,10 @@ class Contact extends Model
     }
 
 
-    public static function deleteContact($id){
+    public static function deleteContact($id)
+    {
         //raw sql query
-       // $result = DB::delete('DELETE FROM contacts WHERE contact_id=?', [$id]);
+        // $result = DB::delete('DELETE FROM contacts WHERE contact_id=?', [$id]);
 
         //query builder
         //DB::table('contact')->where('contact_id', $id)->delete();
@@ -82,6 +85,5 @@ class Contact extends Model
         if ($mycontact->delete()) {
             return true;
         }
-
     }
 }

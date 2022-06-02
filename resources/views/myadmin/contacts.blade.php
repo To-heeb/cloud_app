@@ -5,6 +5,11 @@
 @section('content')
 <div class="container-fluid">
 	<div class="row">
+		@if(session('success'))
+			<div class="alert alert-success">
+				{{session('success')}}
+			</div>
+		@endif
 		<div class="col-md-12">
 			<a href="{{route('contacts.create')}}" class="btn btn-primary my-5">Add Contact</a>
 			<table class="table table-bordered table-hover">
@@ -19,7 +24,6 @@
 						<th>Email Address</th>
 						<th>Meet At</th>
 						<th>Home Address</th>
-						<th></th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -36,7 +40,6 @@
 						<td>{{$value->emailaddress}}</td>
 						<td>{{$value->contactaddress}}</td>
 						<td>{{$value->meet_at}}</td>
-						<td>{{$value->workphone}}</td>
 						<td>
 							<a href="{{route('contacts.edit', ['contact'=>$value->contact_id])}}" class='btn btn-primary btn-sm'>Edit</a>
 

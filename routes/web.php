@@ -32,7 +32,7 @@ Route::get('/aboutus/{title}', function ($title) {
     return view('aboutus', ['title' => $title, 'lastname' => 'Liadi', 'firstname' => 'Aminat']);
 })->name('aboutus');
 
-Route::get('/aboutus', [HomeController::class, 'about']);
+Route::get('/aboutus', [HomeController::class, 'about'])->name('aboutme');
 
 /*Route::get('/services', function () {
 	return view('services');
@@ -52,6 +52,8 @@ Route::get('/about', [InfoController::class, 'about'])->name('info.about');
 Route::get('/contact', [InfoController::class, 'contact'])->name('info.contact');
 Route::get('/services', [InfoController::class, 'services'])->name('info.services');
 Route::get('/team', [InfoController::class, 'team'])->name('info.team');
+
+Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
 Route::resource('students', StudentController::class)->middleware('auth');
 

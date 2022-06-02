@@ -35,6 +35,8 @@
 				{{ Auth::user()->name }}<br>
 				{{ Auth::user()->email }}
 				<img src="{{asset('images/avatar1.png')}}" class="topimg rounded-circle" width="45" height="45">
+				<form action="{{ route('logout') }}"" method="post">
+					@csrf<input type="submit" value="Logout" class="btn btn-danger mt-2"></form>
 			</div>
 		</div>
 
@@ -45,8 +47,8 @@
 					<li><a href="">Dashboard</a></li>
 					<li><a href="{{route('contacts.index')}}">Contact</a></li>
 					<li><a href="{{route('students.index')}}">Student</a></li>
+					<li><a href="{{route('info.about')}}">About Us</a></li>
 					<li><a href="">Settings</a></li>
-					<li><a href="">Logout</a></li>
 				</ul>
 			</div>
 			<div class="col-md-9">

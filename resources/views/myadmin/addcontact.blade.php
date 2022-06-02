@@ -7,7 +7,7 @@
 		<div class="row">
 			<div class="col-md-6">
 				<h2></h2>
-				<h3>{{$title}} {{session('matricno')}}</h3>
+				<h3>{{$title}}</h3>
 				@if($errors->any())
 				<div class="alert alert-danger">
 					<ul>
